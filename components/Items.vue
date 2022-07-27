@@ -1,9 +1,10 @@
 <template>
   <div class="visible">
     <div class="sortWrap">
-      <select class=" sort">
+      <select class="sort" v-model="sorting">
         <option value="default">По умолчанию</option>
-        <option value="date">По дате</option>
+        <option value="priceMin">По убыванию цены</option>
+        <option value="priceMax">По повышению цены</option>
       </select>
     </div>
       <div class="cards" >
@@ -12,9 +13,8 @@
               <img src="~static/trash.png" alt="trash">
             </div>
          <div class="imageWrap">
-           <img class="image"
-                :src="list.href"
-                alt="image">
+           <img class="image" :src="list.href" @error="replaceSrc" alt="image" />
+
          </div>
           <div class="data">
             <div class="title">{{ list.name }}</div>
@@ -36,6 +36,7 @@
 export default {
   data() {
     return {
+      sorting: 'default',
       currentDate: false,
       active:false,
     }
@@ -50,6 +51,15 @@ export default {
     },
     deleteItem (date) {
       this.$store.commit('DELETE_LIST', date)
+    },
+    replaceSrc(e){
+      e.target.src = '404.jpeg'
+    }
+  },
+
+  watch: {
+    sorting(sorting) {
+      this.$store.commit('SORTING_LIST', sorting)
     }
   }
 }

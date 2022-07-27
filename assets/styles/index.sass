@@ -1,5 +1,7 @@
 $mg1: 16px
 $mg2: 32px
+
+
 *
   box-sizing: border-box
 
@@ -8,7 +10,7 @@ body
   background: #E5E5E5
 
   .app
-    margin: 32px
+    margin: $mg2
     display: grid
     grid-template-columns: 25% 75%
     gap: 16px
@@ -36,7 +38,8 @@ body
           background: #EEEEEE
           border-radius: 10px
           font-family: 'Source Sans Pro', sans-serif
-          padding: 10px 95px
+          padding: 10px 0
+          width: 100%
           font-style: normal
           font-weight: 600
           font-size: 12px
@@ -132,7 +135,7 @@ body
 
       .cards
         display: flex
-        gap: 16px
+        gap: $mg1
         flex-wrap: wrap
         .card
           overflow: visible
@@ -143,7 +146,6 @@ body
           box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02)
           border-radius: 4px
           align-items: flex-start
-          max-width: 332px
           .trash
             position: absolute
             background: #FF8484
@@ -157,7 +159,7 @@ body
             transform: translate(+25%, -25%)
             cursor: pointer
           .imageWrap
-            width: 332px
+            max-width: 332px
             height: 200px
             .image
              width: 100%
@@ -181,3 +183,30 @@ body
               font-size: 16px
               line-height: 20px
 
+@media (max-width: 1450px)
+  .card
+    max-width: 270px
+
+@media (max-width: 1200px)
+  cards
+    gap: 8px
+    .card
+      max-width: 200px
+
+@media (max-width: 900px)
+
+  .card
+    width: 150px
+    .imageWrap
+      max-height: 150px
+      .image
+        max-height: 150px
+
+@media (max-width: 800px)
+  .cards
+    justify-content: center
+    .card
+      .imageWrap
+        //max-height: 150px
+        .image
+          //max-height: 100px
