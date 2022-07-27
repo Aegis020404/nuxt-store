@@ -23,6 +23,7 @@
         <input v-model="price" type="text" :class="!price && required ? 'input inputRequired' : 'input' "
                placeholder="Введите цену">
         <div class="miniAlert">{{!price && required ? 'Поле является обязательным' : '' }}</div>
+        <div class="miniAlert">{{!price && notInteger ? 'Поле должно содеражать только числа' : '' }}</div>
       </div>
 
 
@@ -46,7 +47,8 @@ export default {
       description: '' ,
       href:        '' ,
       price:       '' ,
-      required: false
+      required: false,
+      notInteger: false
     }
   },
 
@@ -54,12 +56,24 @@ export default {
     addItem() {
 
       if(this.name && this.href && this.price) {
-        this.$store.commit('ADD_LIST', {name: this.name, description: this.description, href: this.href, price: this.price})
-        this.description = ''
-        this.name = ''
-        this.href = ''
-        this.price = ''
-        this.required = false
+        if(Number.isInteger(+this.price) ) {
+          this.$store.commit('ADD_LIST', {
+            name: this.name,
+            description: this.description,
+            href: this.href,
+            price: this.price,
+            date: Date.now()
+          })
+          this.description = ''
+          this.name = ''
+          this.href = ''
+          this.price = ''
+          this.required = false
+          this.notInteger = false
+        } else {
+          this.price = ''
+          this.notInteger = true
+        }
       } else {
         this.required = true
 
