@@ -14,15 +14,34 @@ body
     display: grid
     grid-template-columns: 25% 75%
     gap: 16px
+    .burger
+      z-index: 16
+      transition: .5s all
+      cursor: pointer
+      display: none
+      position: absolute
+      left: 25px
+      top: 37px
+      width: 20px
+      height: 20px
+    .burger-active
+      transform: rotate(360deg)
 
+    .visiblePhone
+      left: 50% !important
+      transform: translateX(-50%)
+      width: 80%
     .control
+      padding: 17px
+
+      z-index: 12
+      transition: all .5s
       .title
         margin-bottom: $mg1
         color: #3F3F3F
         font-weight: 600
         font-size: 28px
         line-height: 35px
-
       .settings
         box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02)
         border-radius: 4px
@@ -134,6 +153,7 @@ body
             outline: none !important
 
       .cards
+        flex-direction: row
         display: flex
         gap: $mg1
         flex-wrap: wrap
@@ -146,6 +166,8 @@ body
           box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02)
           border-radius: 4px
           align-items: flex-start
+
+
           .trash
             position: absolute
             background: #FF8484
@@ -187,26 +209,56 @@ body
   .card
     max-width: 270px
 
+
+
+
+
 @media (max-width: 1200px)
+  .title
+      font-size: 18px !important
   cards
     gap: 8px
     .card
       max-width: 200px
 
 @media (max-width: 900px)
+  .app
+    display: block !important
+    .burger
+      display: block !important
 
-  .card
-    width: 150px
-    .imageWrap
-      max-height: 150px
-      .image
-        max-height: 150px
 
-@media (max-width: 800px)
+    .control
+      background: #FFFEFB
+      position: fixed
+      left: 200%
+
   .cards
     justify-content: center
     .card
+      width: 150px
       .imageWrap
-        //max-height: 150px
+        max-height: 150px
         .image
-          //max-height: 100px
+          max-height: 150px
+
+//@media (max-width: 800px)
+
+
+
+
+// animation
+.list-complete-item
+  transition: all 0.5s ease
+  display: inline-block
+
+
+.list-complete-enter-from,
+.list-complete-leave-to
+  opacity: 0
+  transform: translateY(100px)
+
+
+.list-complete-leave-active
+  position: absolute
+
