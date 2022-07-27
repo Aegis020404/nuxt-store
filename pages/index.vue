@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app" v-cloak>
     <Control/>
     <Items/>
   </div>
@@ -13,7 +13,5 @@ export default {
 </script>
 
 <style lang="sass">
-  //h1
-    //color: blue
 
 </style>
