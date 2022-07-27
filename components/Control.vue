@@ -4,8 +4,9 @@
     <form class="settings" @submit.prevent="addItem">
       <div class="item">
         <div class="name">Наименование товара <div class="required"/> </div>
-        <input v-model="name" type="text" class="input" placeholder="Введите наименование товара">
-<!--        <div class="miniAlert">{{required[0] ? 'Поле является обязательным' : '' }}</div>-->
+        <input v-model="name" type="text" :class="!name && required ? 'input inputRequired' : 'input' "
+               placeholder="Введите наименование товара">
+        <div class="miniAlert">{{!name && required ? 'Поле является обязательным' : '' }}</div>
       </div>
       <div class="item">
         <div class="name">Описание товара</div>
@@ -13,13 +14,15 @@
       </div>
       <div class="item">
         <div class="name">Ссылка на изображение товара <div class="required"/>  </div>
-        <input v-model="href" type="text" class="input" placeholder="Введите ссылку">
-<!--        <div class="miniAlert">{{required[1] ? 'Поле является обязательным' : '' }}</div>-->
+        <input v-model="href" type="text" :class="!href && required ? 'input inputRequired' : 'input' "
+               placeholder="Введите ссылку">
+        <div class="miniAlert">{{!href && required ?  'Поле является обязательным' : '' }}</div>
       </div>
       <div class="item">
         <div class="name">Цена товара <div class="required"/>  </div>
-        <input v-model="price" type="text" class="input" placeholder="Введите цену">
-<!--        <div class="miniAlert">{{required[2] ? 'Поле является обязательным' : '' }}</div>-->
+        <input v-model="price" type="text" :class="!price && required ? 'input inputRequired' : 'input' "
+               placeholder="Введите цену">
+        <div class="miniAlert">{{!price && required ? 'Поле является обязательным' : '' }}</div>
       </div>
 
 
@@ -43,6 +46,7 @@ export default {
       description: '' ,
       href:        '' ,
       price:       '' ,
+      required: false
     }
   },
 
@@ -55,8 +59,9 @@ export default {
         this.name = ''
         this.href = ''
         this.price = ''
+        this.required = false
       } else {
-
+        this.required = true
 
       }
     }
